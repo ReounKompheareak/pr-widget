@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 class BaseStreamProvider<T> {
   StreamController<T> _controller = StreamController<T>.broadcast();
 
-  Stream<T> get service.stream => _controller.stream;
+  Stream<T> get stream => _controller.stream;
 
   Future fetchListData(VoidCallback voidCallback) async {
     var result = await voidCallback.call();
@@ -13,9 +13,8 @@ class BaseStreamProvider<T> {
   }
 
   Future fetchListPaginationData(VoidCallback voidCallback,int page) async {
-    var tempResult ;
+    dynamic tempResult = [] ;
     var result = await voidCallback.call();
-
     if(page >1) {
       tempResult += result;
       _controller.sink.add(tempResult);
