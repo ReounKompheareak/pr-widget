@@ -1,8 +1,7 @@
 name: pr_widget
 description: A new Flutter package project.
 version: 0.0.1
-author: Reoun Kompheareak
-homepage:
+homepage: https://github.com/ReounKompheareak/pr-widget.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: any
+  dio: ^3.0.10
 
 dev_dependencies:
   flutter_test:
