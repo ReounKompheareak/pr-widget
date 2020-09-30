@@ -12,6 +12,7 @@ class StreamWidget<T> extends StatelessWidget {
 
   StreamWidget(
       {@required this.stream,
+        @required this.child,
       this.loadingWidget,
       this.errorWidget,
       this.errorButtonColor = Colors.blue});
@@ -22,6 +23,7 @@ class StreamWidget<T> extends StatelessWidget {
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<T> snapShot) {
           if (snapShot.hasData) {
+            return child;
           } else if (snapShot.hasError) {
             return errorWidget != null
                 ? errorWidget
@@ -36,7 +38,7 @@ class StreamWidget<T> extends StatelessWidget {
         });
   }
 
-  _ErrorWidget(String message) {
+  Widget _ErrorWidget(String message) {
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
