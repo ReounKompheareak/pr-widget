@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+
 class StreamWidget<T> extends StatelessWidget {
   Widget loadingWidget;
-  Widget errorWidget;
-  Widget child;
+  Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) child;
+  Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) errorWidget;
   Stream<T> stream;
   Color errorButtonColor;
   VoidCallback onRefreshCallback;
@@ -23,10 +23,10 @@ class StreamWidget<T> extends StatelessWidget {
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<T> snapShot) {
           if (snapShot.hasData) {
-            return child;
+            return child.call(context,snapShot);
           } else if (snapShot.hasError) {
             return errorWidget != null
-                ? errorWidget
+                ? errorWidget.call(context, snapShot)
                 : _ErrorWidget(snapShot.error.toString());
           }
           return loadingWidget != null
