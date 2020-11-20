@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class StreamWidget<T> extends StatelessWidget {
   Widget loadingWidget;
-  Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) child;
+  Widget Function(T data) child;
   Widget Function(String message) errorWidget;
   Stream<T> stream;
   Color errorButtonColor;
@@ -13,7 +13,7 @@ class StreamWidget<T> extends StatelessWidget {
 
   StreamWidget(
       {@required this.stream,
-        @required this.child,
+      @required this.child,
       this.loadingWidget,
       this.errorWidget,
       this.errorButtonColor = Colors.blue});
@@ -24,15 +24,16 @@ class StreamWidget<T> extends StatelessWidget {
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<T> snapShot) {
           if (snapShot.hasData) {
-            return child.call(context,snapShot);
+            return child(snapShot.data);
           } else if (snapShot.hasError) {
             return errorWidget != null
-                ? errorWidget.call(snapShot.error.toString())
+                ? errorWidget(snapShot.error.toString())
                 : _ErrorWidget(snapShot.error.toString());
           }
           return loadingWidget != null
               ? loadingWidget
               : Container(
+                  alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: Center(child: CircularProgressIndicator()));
