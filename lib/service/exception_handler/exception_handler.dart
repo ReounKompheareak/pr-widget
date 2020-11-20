@@ -32,7 +32,7 @@ class InvalidInputException extends CustomException {
 }
 
 class ExceptionHandler {
-  dynamic handleError(DioError error) {
+  dynamic handleError({DioError error}) {
     if (error.error.runtimeType == SocketException) {
       return throw "No internet connection";
     } else if (error.error.runtimeType == TimeoutException) {

@@ -1,46 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+class FutureWidget<T> extends StatelessWidget {
 
-// ignore: must_be_immutable
-class StreamWidget<T> extends StatelessWidget {
-  Widget loadingWidget;
+  Future<T> future;
   Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) child;
   Widget Function(String message) errorWidget;
-  Stream<T> stream;
   Color errorButtonColor;
   VoidCallback onRefreshCallback;
+  Widget loadingWidget;
 
-  StreamWidget(
-      {@required this.stream,
-        @required this.child,
-      this.loadingWidget,
-      this.errorWidget,
-      this.errorButtonColor = Colors.blue});
-
-  @override
+  FutureWidget({@required this.future ,@required this.child , this.errorWidget, this.errorButtonColor,this.onRefreshCallback});
+    @override
   Widget build(BuildContext context) {
-    return StreamBuilder<T>(
-        stream: stream,
-        builder: (BuildContext context, AsyncSnapshot<T> snapShot) {
-          if (snapShot.hasData) {
-            return child.call(context,snapShot);
-          } else if (snapShot.hasError) {
-            return errorWidget != null
+    return FutureBuilder<T>(
+      future: future,
+      builder: (BuildContext context , AsyncSnapshot<T> snapShot){
+        if(snapShot.hasData){
+          return child.call(context, snapShot);
+        }else if (snapShot.hasError){
+          return errorWidget != null
                 ? errorWidget.call(snapShot.error.toString())
                 : _ErrorWidget(snapShot.error.toString());
-          }
-          return loadingWidget != null
+        }
+        return loadingWidget != null
               ? loadingWidget
               : Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: Center(child: CircularProgressIndicator()));
-        });
+    });
   }
 
-  // ignore: non_constant_identifier_names
-  Widget _ErrorWidget(String message) {
+
+    Widget _ErrorWidget(String message) {
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,4 +52,5 @@ class StreamWidget<T> extends StatelessWidget {
       ),
     );
   }
+  
 }
