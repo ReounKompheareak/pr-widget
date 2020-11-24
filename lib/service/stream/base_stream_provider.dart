@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 class BaseStreamProvider<T> {
+  
   StreamController<T> _controller = StreamController<T>.broadcast();
 
   Stream<T> get stream => _controller.stream;
 
-  Future fetchListData(VoidCallback voidCallback) async {
+  Future<T> fetchListData(VoidCallback voidCallback) async {
     var result = await voidCallback.call();
     _controller.sink.add(result);
   }
