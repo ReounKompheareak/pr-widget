@@ -15,7 +15,8 @@ class _PaginationExampleState extends State<PaginationExample> {
   BaseStreamProvider<List<User>> _userStreamProvider = BaseStreamProvider();
 
   Future<List<User>> fetchDatafromInternet({int page}) {
-    print("Called fetchDataFromInternet");
+    print("Called fetchDataFromInternet: $page");
+    print("request Url: https://chunlee-node-api-boilerplate.herokuapp.com/api/user/all_users?count=15&page=$page");
     return _userStreamProvider.fetchListData(() async{
       Response response = await Dio().get("https://chunlee-node-api-boilerplate.herokuapp.com/api/user/all_users?count=15&page=$page");
       if(response.statusCode ==200){
@@ -32,6 +33,12 @@ class _PaginationExampleState extends State<PaginationExample> {
   }
 
   @override
+  void dispose() {
+    _userStreamProvider.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamWidget<List<User>>(
@@ -40,8 +47,8 @@ class _PaginationExampleState extends State<PaginationExample> {
         return PaginationWidget<List<User>>(
             controller: _scrollController,
             datas: data,
-            fetchData: (page){
-              return fetchDatafromInternet(page: page);
+            fetchData: (page) async {
+              return await fetchDatafromInternet(page: page);
             },
             child: (data) {
               return Column(
