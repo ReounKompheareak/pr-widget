@@ -16,7 +16,7 @@ class _PaginationExampleState extends State<PaginationExample> {
 
 
   Future<List<User>> fetchDatafromInternetByStreamProvider() {
-    return _userStreamProvider.fetchListData(() async{
+    return _userStreamProvider.addData(() async{
       return await calledApiRequest(1);
     });
   }

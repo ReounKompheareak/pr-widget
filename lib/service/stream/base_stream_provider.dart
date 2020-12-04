@@ -8,9 +8,14 @@ class BaseStreamProvider<T> {
 
   Stream<T> get stream => _controller.stream;
 
-  Future<T> fetchListData(VoidCallback voidCallback) async {
+  Future<T> addData(VoidCallback voidCallback) async {
     var result = await voidCallback.call();
     _controller.sink.add(result);
+  }
+
+
+  addError(exc){
+    _controller.sink.addError(exc);
   }
 
   Future fetchListPaginationData(VoidCallback voidCallback,int page) async {
@@ -23,6 +28,10 @@ class BaseStreamProvider<T> {
       tempResult = result;
     }
   }
+
+
+
+
 
 
 

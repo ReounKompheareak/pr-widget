@@ -26,7 +26,6 @@ class _PaginationWidgetState<T> extends State<PaginationWidget> {
   @override
   void initState() {
     data = widget.datas;
-    print("Called initState");
     widget.controller.addListener(() {
       if (widget.controller.position.maxScrollExtent ==
           widget.controller.position.pixels) {
