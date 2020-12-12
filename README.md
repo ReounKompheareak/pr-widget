@@ -1,6 +1,6 @@
 # Pr Widget
 
-Pr Widget is customize widget for speed up development with custom StreamBuilder and Widget Component relate with api respose.
+Pr Widget is customize widget for speed up development with custom StreamBuilder and Widget Component relate with api response.
 
 ## How to use
 

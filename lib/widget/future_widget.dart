@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 /// FutureWidget is FutureBuilder custom widget
 ///
 /// We provide on ErrorWidget and LoadingWidget as default already but you can customize with your own widget also

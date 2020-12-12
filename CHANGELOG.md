@@ -1,4 +1,4 @@
-## 0.0.6+2
+## 0.0.6+3
 
 * Resolve warning
 * Update Document
