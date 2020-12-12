@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
+/// PaginationWidget
+///
+/// [child] is Widget is show when request data successfully
+///
+/// [datas] is data we get from api requesr
+///
+/// [onApiRequest] is handle api request for next page
+///
+
 class PaginationWidget<T> extends StatefulWidget {
-  bool shrinkWrap;
-  T datas;
-  Widget Function(dynamic data) child;
-  ScrollController controller;
-  Future<T> Function(int) onApiRequest;
+  final bool shrinkWrap;
+  final T datas;
+  final Widget Function(dynamic data) child;
+  final ScrollController controller;
+  final Future<T> Function(int) onApiRequest;
 
   PaginationWidget(
       {@required this.controller,
@@ -20,7 +29,11 @@ class PaginationWidget<T> extends StatefulWidget {
 
 class _PaginationWidgetState<T> extends State<PaginationWidget> {
   int page = 1;
+
+  /// [isLoading] is using to check for display loading widget when user scroll to max position
   bool isLoading = false;
+
+  /// [data] use to display data into  list
   var data = [];
 
   @override
@@ -37,8 +50,8 @@ class _PaginationWidgetState<T> extends State<PaginationWidget> {
           setState(() {
             isLoading = false;
           });
-          // data+=value;    
-          
+          // data+=value;
+
           data = data + value;
         }).catchError((e) {
           setState(() {
@@ -47,13 +60,11 @@ class _PaginationWidgetState<T> extends State<PaginationWidget> {
         });
       }
     });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // for(var i in widget.datas){
-    //       print("FetchData: ${i.firstname}");
-    //     }
     return Stack(
       children: [
         ListView(

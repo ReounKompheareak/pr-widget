@@ -1,3 +1,13 @@
-## [0.0.5] - TODO: Add release date.
+## 0.0.6+2
 
-* TODO: Describe initial release.
+* Resolve warning
+* Update Document
+
+## 0.0.6+1
+
+* Update document
+
+## 0.0.6
+
+* Update example and readme
+* Add Pagination Stream Widget

@@ -1,6 +1,6 @@
 name: pr_widget
-description: A new Flutter package project.
-version: 0.0.5
+description: Pr Widget is customize widget for speed up development with custom StreamBuilder and Widget Component relate with api respose.
+version: 0.0.6+2
 homepage: https://github.com/ReounKompheareak/pr-widget
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # Using dio for customize api exception
   dio: ^3.0.10
 
 dev_dependencies:
@@ -21,4 +23,4 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-     - assets/images/
+    - assets/images/

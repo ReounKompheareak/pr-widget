@@ -1,7 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
+/// StreamWidget is StreamBuilder custom widget come along with BaseStream Provider
+///
+/// We provide on ErrorWidget and LoadingWidget as default already but you can customize with your own widget also
+///
+/// [future] for handle api request
+///
+/// [child] return as Function(BuildContext ,AsyncSnapshot<T>) to render UI when api request successfully
+///
+/// [errorButtonColor] use for change color on default ErrorWidget base on your app color
+///
+/// [onRefreshCallback] will handle onPressed event in default ErrorButtonWidget
+///
+/// [errorWidget] use for your own customize widget when api response error
+///
+///
 // ignore: must_be_immutable
 class StreamWidget<T> extends StatelessWidget {
   Widget loadingWidget;
