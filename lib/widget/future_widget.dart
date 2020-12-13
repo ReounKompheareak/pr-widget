@@ -17,8 +17,7 @@ import 'package:flutter/material.dart';
 ///
 ///
 class FutureWidget<T> extends StatelessWidget {
-
-  /// [future] use to called api request 
+  /// [future] use to called api request
   final Future<T> future;
 
   /// [child] is return as widget when fetch data from api successfully
@@ -64,7 +63,6 @@ class FutureWidget<T> extends StatelessWidget {
                   child: Center(child: CircularProgressIndicator()));
         });
   }
-
 
   /// defaul error widget
   Widget _errorWidget(String message) {

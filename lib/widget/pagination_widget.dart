@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 ///
 
 class PaginationWidget<T> extends StatefulWidget {
-
   /// [shrinkWrap] the same as ListView ShrinkWraps
   final bool shrinkWrap;
 

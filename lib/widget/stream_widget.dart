@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 ///
 // ignore: must_be_immutable
 class StreamWidget<T> extends StatelessWidget {
-
   /// Widget to render Stream on connection State
   Widget loadingWidget;
 
@@ -65,7 +64,6 @@ class StreamWidget<T> extends StatelessWidget {
                   child: Center(child: CircularProgressIndicator()));
         });
   }
-
 
   /// Error Default Widget
   Widget _errorWidget(String message) {

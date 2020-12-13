@@ -1,4 +1,4 @@
-## 0.0.6+6
+## 0.0.6+8
 * Update Document
 * Refactor BaseStreamProvider class
 ## 0.0.6+3

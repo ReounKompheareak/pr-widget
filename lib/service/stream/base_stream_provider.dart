@@ -1,10 +1,7 @@
 import 'dart:async';
 
-
-
 /// [BaseStreamProvider] is use for a shortcut to create StreamController
 class BaseStreamProvider<T> {
-
   ///Use as StreamController
   StreamController<T> _controller = StreamController<T>.broadcast();
 
@@ -13,7 +10,6 @@ class BaseStreamProvider<T> {
 
   /// [addData] is to add data from network to stream controller and display into streamwidget
   addData(Future<T> Function() voidCallback) async {
-
     /// recieved result from api called
     var result = await voidCallback.call();
 
@@ -25,7 +21,6 @@ class BaseStreamProvider<T> {
   addError(exc) {
     _controller.sink.addError(exc);
   }
-
 
   void dispose() {
     _controller.close();
