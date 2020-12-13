@@ -10,10 +10,20 @@ import 'package:flutter/material.dart';
 ///
 
 class PaginationWidget<T> extends StatefulWidget {
+
+  /// [shrinkWrap] the same as ListView ShrinkWraps
   final bool shrinkWrap;
+
+  /// data from api request
   final T datas;
+
+  /// Function to return widget when data fetching from network successfully
   final Widget Function(dynamic data) child;
+
+  /// List controller use to detect list scroll maxing
   final ScrollController controller;
+
+  /// called to request when user scroll at maxScrollExtend position
   final Future<T> Function(int) onApiRequest;
 
   PaginationWidget(

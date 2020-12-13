@@ -17,11 +17,23 @@ import 'package:flutter/material.dart';
 ///
 ///
 class FutureWidget<T> extends StatelessWidget {
+
+  /// [future] use to called api request 
   final Future<T> future;
+
+  /// [child] is return as widget when fetch data from api successfully
   final Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) child;
+
+  /// [errorWidget] return widget when error as your customize widget
   final Widget Function(String message) errorWidget;
+
+  /// [errorButtonColor] Customize color with default error button
   final Color errorButtonColor;
+
+  /// called when click on default error widget button
   final VoidCallback onRefreshCallback;
+
+  /// customize widget when on Connecting state
   final Widget loadingWidget;
 
   FutureWidget(
@@ -53,6 +65,8 @@ class FutureWidget<T> extends StatelessWidget {
         });
   }
 
+
+  /// defaul error widget
   Widget _errorWidget(String message) {
     return Center(
       child: Column(

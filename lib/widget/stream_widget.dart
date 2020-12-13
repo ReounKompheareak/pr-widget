@@ -18,11 +18,23 @@ import 'package:flutter/material.dart';
 ///
 // ignore: must_be_immutable
 class StreamWidget<T> extends StatelessWidget {
+
+  /// Widget to render Stream on connection State
   Widget loadingWidget;
+
+  /// Function to return widget when data fetching from network successfully
   Widget Function(T data) child;
+
+  /// Function to return widget when data fetching from network contain error
   Widget Function(String message) errorWidget;
+
+  /// Stream call on StreamWidget as StreamBuilder
   Stream<T> stream;
+
+  /// Customize color with default error button
   Color errorButtonColor;
+
+  /// called when user click on error button to recall api again
   VoidCallback onRefreshCallback;
 
   StreamWidget(
@@ -42,7 +54,7 @@ class StreamWidget<T> extends StatelessWidget {
           } else if (snapShot.hasError) {
             return errorWidget != null
                 ? errorWidget(snapShot.error.toString())
-                : _ErrorWidget(snapShot.error.toString());
+                : _errorWidget(snapShot.error.toString());
           }
           return loadingWidget != null
               ? loadingWidget
@@ -54,8 +66,9 @@ class StreamWidget<T> extends StatelessWidget {
         });
   }
 
-  // ignore: non_constant_identifier_names
-  Widget _ErrorWidget(String message) {
+
+  /// Error Default Widget
+  Widget _errorWidget(String message) {
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

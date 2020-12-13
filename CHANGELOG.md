@@ -1,3 +1,6 @@
+## 0.0.6+6
+* Update Document
+* Refactor BaseStreamProvider class
 ## 0.0.6+3
 
 * Resolve warning

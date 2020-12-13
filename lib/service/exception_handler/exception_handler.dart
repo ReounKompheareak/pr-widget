@@ -1,10 +1,16 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 
+
+
+/// this exception handler script is depend on Dio package
+
+/// to handle type error
 dynamic onHandleTypeError(exc) {
   throw exc;
 }
 
+/// to handle error base on dio error 
 dynamic onHandleDioError(exc) {
   if (exc.error is SocketException) {
     return throw "No internet connection";
