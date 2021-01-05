@@ -1,3 +1,5 @@
+## 0.0.6+9
+* Fix onRefreshCalledback StreamWidget
 ## 0.0.6+8
 * Update Document
 * Refactor BaseStreamProvider class

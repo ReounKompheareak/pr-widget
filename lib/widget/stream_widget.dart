@@ -39,6 +39,7 @@ class StreamWidget<T> extends StatelessWidget {
   StreamWidget(
       {@required this.stream,
       @required this.child,
+      this.onRefreshCallback,
       this.loadingWidget,
       this.errorWidget,
       this.errorButtonColor = Colors.blue});
