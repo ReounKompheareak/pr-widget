@@ -22,7 +22,6 @@ class BaseStreamProvider<T> {
       addError('No internet connection');
     } on DioError catch (exc) {
       if (exc.error is SocketException) {
-        print('Error Socket Exception ${exc}');
         addError(
             'SocketException: Failed host lookup: nodename nor servname provided, or not known, errno = 8');
       } else if (exc.error == DioErrorType.CONNECT_TIMEOUT) {

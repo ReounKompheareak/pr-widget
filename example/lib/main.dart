@@ -42,7 +42,6 @@ class _PaginationExampleState extends State<PaginationExample> {
   Future<List<User>> calledApiRequest(int page) async {
     Response response = await Dio().get(
         "https://chunlee-node-api-boilerplate.herokuapp.com/api/user/all_users?count=15&page=$page");
-    print("ResponseApi= ${response.data}");
     if (response.statusCode == 200) {
       var list = response.data['data'] as List;
       return list.map((e) => User.fromJson(e)).toList();
