@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:pr_widget/widget/pagination_widget.dart';
 import 'package:pr_widget/widget/stream_widget.dart';
@@ -24,7 +23,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class PaginationExample extends StatefulWidget {
   @override
   _PaginationExampleState createState() => _PaginationExampleState();
@@ -35,21 +33,21 @@ class _PaginationExampleState extends State<PaginationExample> {
 
   BaseStreamProvider<List<User>> _userStreamProvider = BaseStreamProvider();
 
-
   Future<List<User>> fetchDatafromInternetByStreamProvider() {
-    return _userStreamProvider.addData(() async{
+    _userStreamProvider.addData(() async {
       return await calledApiRequest(1);
     });
   }
 
-  Future<List<User>> calledApiRequest(int page)async{
-      Response response = await Dio().get("https://chunlee-node-api-boilerplate.herokuapps.com/api/user/all_users?count=15&page=$page");
-      print("ResponseApi= ${response.data}");
-      if(response.statusCode ==200){
-        var list = response.data['data'] as List;
-        return list.map((e) => User.fromJson(e)).toList();
-      }else
-        return throw "error";
+  Future<List<User>> calledApiRequest(int page) async {
+    Response response = await Dio().get(
+        "https://chunlee-node-api-boilerplate.herokuapp.com/api/user/all_users?count=15&page=$page");
+    print("ResponseApi= ${response.data}");
+    if (response.statusCode == 200) {
+      var list = response.data['data'] as List;
+      return list.map((e) => User.fromJson(e)).toList();
+    } else
+      return throw "error";
   }
 
   @override
@@ -68,26 +66,26 @@ class _PaginationExampleState extends State<PaginationExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamWidget<List<User>>(
-      stream: _userStreamProvider.stream,
-      child: ( List<User> data) {
-        return PaginationWidget<List<User>>(
-            controller: _scrollController,
-            datas: data,
-            onApiRequest: (page) async {
-              return await calledApiRequest(page);
-            },
-            child: (data) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                      title: Text("${data.firstname}  ${data.lastname}")),
-                      Divider()
-                ],
-              );
-            });
-      },
-    ),
+        stream: _userStreamProvider.stream,
+        child: (List<User> data) {
+          return PaginationWidget<List<User>>(
+              controller: _scrollController,
+              datas: data,
+              onApiRequest: (page) async {
+                return await calledApiRequest(page);
+              },
+              child: (data) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                        title: Text("${data.firstname}  ${data.lastname}")),
+                    Divider()
+                  ],
+                );
+              });
+        },
+      ),
     );
   }
 }
@@ -106,6 +104,3 @@ class User {
         lastname: json['last_name']);
   }
 }
-
-
-

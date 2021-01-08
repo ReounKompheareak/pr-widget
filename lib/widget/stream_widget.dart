@@ -73,9 +73,7 @@ class StreamWidget<T> extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/images/error.png",
-              width: 120, height: 120, fit: BoxFit.cover),
-          Text(message),
+          Text(message, textAlign: TextAlign.center),
           SizedBox(height: 16),
           CupertinoButton(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),

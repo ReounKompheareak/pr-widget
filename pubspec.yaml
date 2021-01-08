@@ -1,6 +1,6 @@
 name: pr_widget
 description: Pr Widget is customize widget for speed up development with custom StreamBuilder and Widget Component relate with api respose.
-version: 0.0.6+9
+version: 0.0.7
 homepage: https://github.com/ReounKompheareak/pr-widget
 environment:
   sdk: ">=2.7.0 <3.0.0"
