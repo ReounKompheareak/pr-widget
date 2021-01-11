@@ -48,7 +48,7 @@ class BaseStreamProvider<T> {
     } on TypeError catch (e) {
       addError(e);
     } catch (e) {
-      addError('Something went wrong');
+      addError(e.toString());
     }
   }
 
